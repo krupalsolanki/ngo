@@ -10,15 +10,21 @@ function CheckCity(val){
    element.style.display='none';
 }
 
+function checkimage(){
+ var element=document.getElementById('image_info');
+ element.style.display='block';
+ }
+
+
 </script> 
 <?php  
 require_once '../../config.php'; 
- include BASE_PATH.'/includes/css.php';
+include BASE_PATH.'/includes/css.php';
 include BASE_PATH.'/includes/connection.php';?>
 </head>
 <body>
 	<h1>Enter Information for NGO</h1>
-	<form method="POST" action="ngoAdd_db.php">
+	<form method="POST" action="ngoAdd_db.php"enctype="multipart/form-data">
 		Name : <input type="text" name="ngo_name"/><br/>
 		Description : <input type="textarea" name="ngo_description" rows="100" cols="50"/><br/>
 		Country: <input type="text" name="ngo_country" value="India" disabled="true"/><br/>
@@ -40,6 +46,8 @@ include BASE_PATH.'/includes/connection.php';?>
 		Email: <input type="email" name="ngo_email"/><br/>
 		Latitude: <input type="text" name="ngo_latitude"/><br/>
 		Longitude: <input type="text" name="ngo_longitude"/><br/>
+                Photo: <input type="file" name="file" id="file"/><br/>
+               
 		<input type="submit"/>
 	</form>
 </body>
