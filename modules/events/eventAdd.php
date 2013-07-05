@@ -51,7 +51,7 @@
         <div align="center" class="centerdiv" style="height: auto;">
 
             <h3 align="center">Add new Event</h3>
-            <form method="post" name="addEvent" action="eventAdd_db.php">
+            <form method="post" name="addEvent" enctype="multipart/form-data" action="eventAdd_db.php">
                 <table align="center" >
                     <tr>
                         <td>NGO Name</td>
@@ -80,7 +80,7 @@
                     </tr>
 
                     <tr>
-                        <td><label for="file">Filename:</label></td>
+                        <td><label for="file">Add Photo:</label></td>
                         <td><input type="file" name="file" id="file"></td>
                         <td></td>
                     </tr>

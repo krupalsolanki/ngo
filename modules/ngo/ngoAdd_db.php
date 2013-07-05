@@ -11,7 +11,7 @@ $city=$_POST['ngo_city'];
 
 $query="INSERT INTO 
 		ngo_info
-		(`ngo_id`, `ngo_name`, `ngo_description`, `ngo_country`, `ngo_city`, `ngo_address`, `ngo_contact_no`, `ngo_website`, `ngo_email`, `ngo_latitude`, `ngo_longitude`) VALUES (NULL, '".$_POST['ngo_name']."', '".$_POST['ngo_description']."', 'India', '".$city."', '".$_POST['ngo_address']."', '".$_POST['ngo_contact']."', '".$_POST['ngo_website']."', '".$_POST['ngo_email']."', '".$_POST['ngo_latitude']."', '".$_POST['ngo_longitude']."');";
+		(`ngo_id`, `ngo_name`, `ngo_description`, `ngo_country`, `ngo_city`, `ngo_address`, `ngo_contact_no`, `ngo_website`, `ngo_email`, `ngo_latitude`, `ngo_longitude`) VALUES (NULL, '".$_POST['ngo_name']."', '".$_POST['ngo_description']."', 'India', '".$city."', '".$_POST['ngo_address']."', '".$_POST['ngo_contact']."', '".$_POST['ngo_website']."', '".$_POST['ngo_email']."', '".$_POST['ngo_latitude']."', '".$_POST['ngo_longitude']."')";
 
         
 $addimage=1;
