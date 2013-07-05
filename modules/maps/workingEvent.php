@@ -61,8 +61,8 @@
                 clearLocations();
 
                 var radius = document.getElementById('radiusSelect').value;
-                var searchUrl = 'http://localhost/ngo_phase1/getXML.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
-//                var searchUrl = 'http://localhost/ngo_phase1/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
+                var searchUrl = 'http://localhost/ngo_phase1/modules/maps/getXML.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
+//                var searchUrl = 'http://localhost/ngo_phase1/modules/maps/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
                 downloadUrl(searchUrl, function(data) {
                     var xml = parseXml(data);
                     var markerNodes = xml.documentElement.getElementsByTagName("event_info");

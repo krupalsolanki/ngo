@@ -23,12 +23,7 @@ $result=mysql_query($query);
 		echo "Please Try Again";
 		}
 
-$category=$_POST['ngo_category_name'];	
-	if($category=="other")
-	{
-			$category=$_POST['ngo_category_name_tb'];
-	}
-	
+    
 		
 
 ?>
