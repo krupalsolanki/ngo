@@ -27,7 +27,7 @@ $filename=$date."_".$_FILES["file"]["name"];
 $allowedExts = array("jpg", "jpeg", "gif", "png");
 $extension = end(explode(".", $filename));
 $target=BASE_PATH.'/images/';
-$target=$target.basename($_FILES['file']['name']);
+$target=$target.basename($filename);
 if ((($_FILES["file"]["type"] == "image/gif")
 || ($_FILES["file"]["type"] == "image/jpeg")
 || ($_FILES["file"]["type"] == "image/png")
