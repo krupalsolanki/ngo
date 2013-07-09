@@ -7,7 +7,7 @@ include BASE_PATH . '/includes/header.php';
 ?>
 
 <div id="menu" class="leftdiv">
-
+    <div><strong> Search By : </strong></div>
     <div><strong>Location</strong></div>
     <div><select name="event_city" class="input"><?php
         $query = "SELECT distinct event_city FROM event_info";
