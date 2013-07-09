@@ -14,7 +14,7 @@ session_start();
 echo "<a class=\"ex2\" href=\"$address/index.php\" >Home</a>";
 echo "<a class=\"ex2\" href=\"$address/modules/events/eventAdd.php\">Events</a>";
 echo "<a class=\"ex2\" href=\"$address/modules/ngo/ngoAdd.php\">Ngo</a>";
-echo "<a class=\"ex2\" onClick=\"alert('I\'ve been clicked!')\" href=\"$address/modules/events/searchEvent.php\">Search Events</a>";
+echo "<a class=\"ex2\" onClick=\"alert('I\'ve been clicked!')\" href=\"$address/modules/events/event.php\">Search Events</a>";
 echo "<a class=\"ex2\" >Success Stories</a>";
 
 echo "<a class=\"ex2\" href=#>About Us</a>";

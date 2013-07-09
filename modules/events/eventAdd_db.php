@@ -30,7 +30,7 @@
         $long = $output->results[0]->geometry->location->lng;
 
         $query = "INSERT INTO `event_info` (`event_id`, `event_name`, `event_description`, `event_city`, `event_location`, `event_latitude`, `event_longitude`, `event_date`, `event_time`, `event_volunteer_criteria`, `event_category`, `event_contact_person`, `event_contact_phone`, `event_contact_email`, `ngo_id`) VALUES 
-            (NULL,'" . $_POST['event_name'] . "','" . $_POST['event_desc'] . "','" . $_POST['event_city'] . "','" . $event_location . "',
+            (NULL,'" . $_POST['event_name'] . "','" . $_POST['event_desc'] . "','" . $_POST['event_city'] . "','" . $_POST['event_area'].", ".$_POST['event_city']. "',
                 '".$lat."','".$long."','" . $_POST['event_date'] . "','" . $_POST['event_time'] . ":00','" . $_POST['event_v_criteria'] . "','" . $event_category . "','" . $_POST['event_contact_name'] . "','" . $_POST['event_contact_phone'] . "','" . $_POST['event_contact_emailId'] . "','" . $_POST['ngo_id'] . "')";
 
         $date = date('Ymd_Hi');

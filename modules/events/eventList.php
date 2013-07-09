@@ -2,14 +2,14 @@
 
     <body>
 
-        <form action="selectEvent.php" method="post" enctype="multipart/form-data">
-            <div >
+        <form action="eventDesc.php" method="post" enctype="multipart/form-data">
+            <div class="centerdiv" style="height: auto;">
 
                 <?php
                 require_once '../../config.php';
                 require_once BASE_PATH . '/includes/connection.php';
 
-                session_start();
+//                session_start();
 //                    $mu_id = $_SESSION["user_mu_id"] = $_REQUEST['mu_id'];
 //                    $sh_date = date("Y-m-d");
 
@@ -23,7 +23,7 @@
                     $eventImage = $address.$row['image_path'];
                     echo "<div style=\"height:100px; width:400px; text-decoration:none\">";
 
-                    echo "<a href=\"selectEvent.php?event_id=" . $row['event_id'] . "\">
+                    echo "<a href=\"eventDesc.php?event_id=" . $row['event_id'] . "\">
                         <img src=\"$eventImage\" style=\"height:95px; float:left;\"/><div><h3>" . $row['event_name'] . "</h3></a>
                             Event Date :" . $row['event_date'] . "</br>Event Location :" . $row['event_location'] . "</div></div><div><hr></div>";
 
