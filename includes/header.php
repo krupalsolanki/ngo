@@ -2,7 +2,7 @@
 <?php
 require_once BASE_PATH .'/config.php';
 
-echo "<img src=\"$address/images/ngo_logo.jpg\" class=\"img\"/>";
+echo "<img src=\"$address/images/ngo_logo.gif\" class=\"img\"/>";
 ?>
 <div style="background-color:#d3d3d3; height:auto "><h1 align="center" style="padding-top:20px; margin: 0px; padding-bottom:20px; margin-top:0px">NGO</h1></div>
 
