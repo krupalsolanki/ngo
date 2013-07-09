@@ -57,7 +57,7 @@
                         <td>NGO Name</td>
                         <td><select name="ngo_id" class="input" style="width: 160px;">
                                 <?php
-                                $query = "SELECT distinct ngo_name,ngo_id FROM ngo_info";
+                                $query = "SELECT DISTINCT ngo_name,ngo_id FROM ngo_info";
                                 $result = mysql_query($query) or die(mysql_error());
                                 while ($row = mysql_fetch_array($result)) {
                                     echo "<option value='{$row['ngo_id']}'>{$row['ngo_name']}</option>";

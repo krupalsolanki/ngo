@@ -61,6 +61,8 @@
                 clearLocations();
 
                 var radius = document.getElementById('radiusSelect').value;
+                radius = radius * 1.609344;
+                alert(radius);
                 var searchUrl = 'http://localhost/ngo_phase1/modules/maps/getXML.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
 //                var searchUrl = 'http://localhost/ngo_phase1/modules/maps/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
                 downloadUrl(searchUrl, function(data) {
@@ -146,9 +148,9 @@
         <div>
             <input type="text" id="addressInput" size="10"/>
             <select id="radiusSelect">
-                <option value="2" selected>2mi</option>
-                <option value="10">10mi</option>
-                <option value="200">200mi</option>
+                <option value="1.24" selected>2km</option>
+                <option value="6.21">10km</option>
+                <option value="12.42">20km</option>
             </select>
 
             <input type="button" onclick="searchLocations()" value="Search"/>

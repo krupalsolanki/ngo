@@ -33,10 +33,11 @@
             (NULL,'" . $_POST['event_name'] . "','" . $_POST['event_desc'] . "','" . $_POST['event_city'] . "','" . $event_location . "',
                 '".$lat."','".$long."','" . $_POST['event_date'] . "','" . $_POST['event_time'] . ":00','" . $_POST['event_v_criteria'] . "','" . $event_category . "','" . $_POST['event_contact_name'] . "','" . $_POST['event_contact_phone'] . "','" . $_POST['event_contact_emailId'] . "','" . $_POST['ngo_id'] . "')";
 
-
+        $date = date('Ymd_Hi');
 
         $allowedExts = array("jpg", "jpeg", "gif", "png");
-        $extension = end(explode(".", $_FILES["file"]["name"]));
+        $fileName = $date."_".$_FILES["file"]["name"];
+        $extension = end(explode(".", $fileName));
         $target = BASE_PATH . '/images/';
         $target = $target . basename($_FILES['file']['name']);
 
@@ -47,7 +48,7 @@
                 if (file_exists($target)) {
 
                     echo "<div align=\"center\" class=\"centerdiv\" style=\"width: 550px; \">";
-                    echo $_FILES["file"]["name"] . " already exists. </br>Please rename the file and try again. ";
+                    echo $fileName. " already exists. </br>Please rename the file and try again. ";
                     echo "</div>";
                 } else {
                     if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
@@ -59,7 +60,7 @@
                             $row1 = mysql_fetch_row($result1);
                             $event_id = $row1[0];
 
-                            $result2 = mysql_query("INSERT INTO images(`image_path`,`ngo_id`,`event_id`) values ('/images/" . $_FILES["file"]["name"] . "','" . $_POST['ngo_id'] . "','" . $event_id . "')");
+                            $result2 = mysql_query("INSERT INTO images(`image_path`,`ngo_id`,`event_id`) values ('/images/" . $fileName . "','" . $_POST['ngo_id'] . "','" . $event_id . "')");
                             mysql_query($result2);
                             if ($result2) {
                                 echo "<div align=\"center\" class=\"centerdiv\" style=\"width: 550px; \">";
