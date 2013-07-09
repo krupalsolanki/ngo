@@ -47,8 +47,6 @@ include BASE_PATH.'/includes/connection.php';
 		Contact Number: <input type="text" name="ngo_contact"/><br/>
 		Website: <input type="url" name="ngo_website"/><br/>
 		Email: <input type="email" name="ngo_email"/><br/>
-		Latitude: <input type="text" name="ngo_latitude"/><br/>
-		Longitude: <input type="text" name="ngo_longitude"/><br/>
                 Photo: <input type="file" name="file" id="file"/><br/>
                
 		<input type="submit"/>

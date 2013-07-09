@@ -9,15 +9,23 @@ $city=$_POST['ngo_city'];
 	$city=$_POST['ngo_city_tb'];
 	}
 
+ $ngo_location = $_POST['ngo_address'] . " " . $city;       
+ $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address=' . str_replace(' ', '+', trim($ngo_location)) . '&sensor=false');
+ $output = json_decode($geocode);
+ $lat = $output->results[0]->geometry->location->lat;
+ $long = $output->results[0]->geometry->location->lng;
+       
+        
 $query="INSERT INTO 
 		ngo_info
-		(`ngo_id`, `ngo_name`, `ngo_description`, `ngo_country`, `ngo_city`, `ngo_address`, `ngo_contact_no`, `ngo_website`, `ngo_email`, `ngo_latitude`, `ngo_longitude`) VALUES (NULL, '".$_POST['ngo_name']."', '".$_POST['ngo_description']."', 'India', '".$city."', '".$_POST['ngo_address']."', '".$_POST['ngo_contact']."', '".$_POST['ngo_website']."', '".$_POST['ngo_email']."', '".$_POST['ngo_latitude']."', '".$_POST['ngo_longitude']."')";
+		(`ngo_id`, `ngo_name`, `ngo_description`, `ngo_country`, `ngo_city`, `ngo_address`, `ngo_contact_no`, `ngo_website`, `ngo_email`, `ngo_latitude`, `ngo_longitude`) VALUES (NULL, '".$_POST['ngo_name']."', '".$_POST['ngo_description']."', 'India', '".$city."', '".$_POST['ngo_address']."', '".$_POST['ngo_contact']."', '".$_POST['ngo_website']."', '".$_POST['ngo_email']."', '".$lat."', '".$long."')";
 
         
 $addimage=1;
-        
+$date=date('Ymd_Hi');
+$filename=$date."_".$_FILES["file"]["name"];
 $allowedExts = array("jpg", "jpeg", "gif", "png");
-$extension = end(explode(".", $_FILES["file"]["name"]));
+$extension = end(explode(".", $filename));
 $target=BASE_PATH.'/images/';
 $target=$target.basename($_FILES['file']['name']);
 if ((($_FILES["file"]["type"] == "image/gif")
@@ -38,7 +46,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
 	{
 
 	
-        echo $_FILES["file"]["name"] . " already exists. </br>Please rename the file and try again. ";
+        echo $filename . " already exists. </br>Please rename the file and try again. ";
         $addimage=0;
 	}
     else
@@ -76,7 +84,7 @@ else
                 $row1 = mysql_fetch_row($result1);
                 $ngo_id_fetched=$row1[0];
                 
-                $result2=  mysql_query("INSERT INTO images(`image_path`,`ngo_id`) values ('/images/".$_FILES["file"]["name"]."','".$ngo_id_fetched."')");
+                $result2=  mysql_query("INSERT INTO images(`image_path`,`ngo_id`) values ('/images/".$filename."','".$ngo_id_fetched."')");
                 mysql_query($result2);
                     if($result2)
                     {
