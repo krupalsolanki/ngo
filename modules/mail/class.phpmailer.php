@@ -689,7 +689,7 @@ class PHPMailer {
    */
   public function SetFrom($address, $name = '', $auto = true) {
     $address = trim($address);
-    $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trim
+    $name = trim(preg_replace('/[\r\n]+/', '', $name)); //Strip breaks and trims
     if (!$this->ValidateAddress($address)) {
       $this->SetError($this->Lang('invalid_address').': '. $address);
       if ($this->exceptions) {
