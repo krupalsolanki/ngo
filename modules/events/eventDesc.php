@@ -10,6 +10,17 @@
         include BASE_PATH . '/includes/header.php';
         require_once BASE_PATH . '/includes/connection.php';
         ?>
+        <script type="text/javascript">
+            function hideText(){
+                document.getElementById('attendText').style.visibility = 'hidden';
+            }
+            function attendEvent(value) {
+                if(value==="I am Attending"){
+                    document.getElementById('attendText').style.visibility = 'visible';
+                    document.getElementById('attendBtn').value = "Attend";
+                }
+            }
+        </script>
 <!--    <script language="javascript">
 var xmlHttp
 function selectedtime(t)
@@ -103,7 +114,8 @@ return xmlHttp;
 
     </head>
 
-    <body>
+    <body onload="hideText();">
+     
         <?php
         $event_id = $_GET['event_id'];
         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_info.event_id='" . $event_id . "'";
@@ -126,7 +138,7 @@ return xmlHttp;
                 <?php echo "<img src=\"$eventImage\" />" ?> 
             </div>
 
-
+           
             <div align="center" class="centerdiv" >
                 <h1 style="display: inline;">Event Name</h1>
                 <div  style="float:right; font-size: 20px; padding-top: 8px; height: 100px; margin-top: 20px; width:90px;; border-radius: 5px; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);">
@@ -138,18 +150,22 @@ return xmlHttp;
 
                 </div><br/>
                 <br/>
-                <div align="left" style="margin-left: 20px; width: 300px; float: left; ">
+                <div align="left" style="margin-left: 0px; width: 380px; ">
                     NGO Name: Alochana <br/>
                     Event Category : FALA DHEKNA <br/>
                     Volunteer Criteria : timepas 
                 </div>
-                <div style="float:left"><p>
+
+                <div><p>
                         morgan stanley aaya, bina hame liye chala gyaa, dil ko bada dard hua, aisa laga jaise barish me mu sukha ho. dil is kadar jhanjhor chuka tha k ab jine ki koi aashsa
                         nai thi. mann to kiya is beraham duniya se naata tod lu lekin fir khayal aaya k 12 lakh nahi to kya 6 ki to aasha hai. isi thought k sath hum fir duniya jine chal diye
                     </p>
                 </div>
+                <br/>
+
                 <div>
-                    <input type="button" class="button" value="I am Attending"/>
+                    <input type="email" class="input" id="attendText" placeholder="Enter Your Email ID" />
+                    <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I am Attending"/>
                 </div>
             </div>
 
@@ -157,8 +173,8 @@ return xmlHttp;
                 <div style="float:right" align="left">Krupal Solanki <br/>Phone no : +91 9833216207 <br/>Email ID : krupalsolanki@live.com
                 </div>
                 <br/>
-
             </div> 
+       
         </form>
     </div>
 </body>
