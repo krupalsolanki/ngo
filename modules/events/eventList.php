@@ -8,8 +8,13 @@
                 <?php
                 require_once '../../config.php';
                 require_once BASE_PATH . '/includes/connection.php';
-                
-                $query = "select * from event_info, images where event_info.event_id = images.event_id ";
+                if (isset($_GET['filterCity']) && !empty($_GET['filterCity'])) {
+                    $filterCity = $_GET['filterCity'];
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "'";
+                } else {
+
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id ";
+                }
                 $result = mysql_query($query);
                 $num_rows = mysql_num_rows($result);
                 $count = 0;

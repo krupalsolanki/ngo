@@ -18,7 +18,7 @@
                 return str.substring(0, start) + stringToInsert + str.substr(start + count);
             }
             function attendEvent(value) {
-                if (value === "I am Attending") {
+                if (value === "I want to Attend") {
                     document.getElementById('attendDialog').style.display = 'block';
                     document.getElementById('attendBtn').value = "Attend";
                 }
@@ -28,19 +28,22 @@
                     var event_id = document.getElementById("event_id").value;
                     if (document.getElementById("attendReminder").checked) {
                         var reminder = "y";
-                        alert(reminder);
                     }
                     else
                     {
                         var reminder = "n";
-                        alert(reminder);
                     }
 
                     url = url + "?emailID=" + emailID + "&event_id=" + event_id + "&reminder=" + reminder;
                     urlAddress = location.href;
                     var n = urlAddress.indexOf("eventDesc");
                     urlAddress = spliceString(urlAddress, n, 40, url);
+                    if(emailID == ''){
+                        alert("Add Email ID ");
+                    }
+                    else{
                     window.location.assign(urlAddress);
+                    }
                 }
             }
         </script>
@@ -126,7 +129,7 @@
                         <input type="checkbox" id="attendReminder" name="reminder" />I want a Reminder?<br/><br/>
 
                     </div>
-                    <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I am Attending"/><br/>
+                    <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I want to Attend"/><br/>
 
                 </div>
             </div>
