@@ -11,111 +11,45 @@
         require_once BASE_PATH . '/includes/connection.php';
         ?>
         <script type="text/javascript">
-            function hideText(){
-                document.getElementById('attendText').style.visibility = 'hidden';
+            function hideText() {
+                document.getElementById('attendDialog').style.display = 'none';
+            }
+            function spliceString(str, start, count, stringToInsert) {
+                return str.substring(0, start) + stringToInsert + str.substr(start + count);
             }
             function attendEvent(value) {
-                if(value==="I am Attending"){
-                    document.getElementById('attendText').style.visibility = 'visible';
+                if (value === "I am Attending") {
+                    document.getElementById('attendDialog').style.display = 'block';
                     document.getElementById('attendBtn').value = "Attend";
+                }
+                if (value === "Attend") {
+                    var url = "registerEventAttend.php";
+                    var emailID = document.getElementById("attendText").value;
+                    var event_id = document.getElementById("event_id").value;
+                    if (document.getElementById("attendReminder").checked) {
+                        var reminder = "y";
+                        alert(reminder);
+                    }
+                    else
+                    {
+                        var reminder = "n";
+                        alert(reminder);
+                    }
+
+                    url = url + "?emailID=" + emailID + "&event_id=" + event_id + "&reminder=" + reminder;
+                    urlAddress = location.href;
+                    var n = urlAddress.indexOf("eventDesc");
+                    urlAddress = spliceString(urlAddress, n, 40, url);
+                    window.location.assign(urlAddress);
                 }
             }
         </script>
-<!--    <script language="javascript">
-var xmlHttp
-function selectedtime(t)
-{
-var url="book_ticket_process.php";
-document.getElementById("show_id").value = t;
-var sh_id = document.getElementById("sho_time").value;
-url=url+"?sh_id="+sh_id;
 
-}
-function selectshow(str)
-{
-xmlHttp=GetXmlHttpObject();
-if (xmlHttp==null)
-{
-alert ("Your browser does not support AJAX!");
-return;
-}
-
-
-var url="select_sh_time.php";
-var numPeople = document.getElementById("numPeople").value;
-url=url+"?date="+str+"&numPeople="+numPeople;
-url=url+"&date="+str;
-alert(url);
-xmlHttp.onreadystatechange=screenChanged;
-xmlHttp.open("GET",url,true);
-xmlHttp.send(null);
-}
-
-function screenChanged()
-{
-if (xmlHttp.readyState==4)
-{
-document.getElementById("show_time").innerHTML=xmlHttp.responseText;
-}
-}
-
-
-//function selectshow(str)
-//{
-//xmlHttp=GetXmlHttpObject();
-//if (xmlHttp==null)
-//  {
-//  alert ("Your browser does not support AJAX!");
-//  return;
-//  }
-//  
-//var url="select_sh_time.php";
-//var numPeople = document.getElementById("numPeople").value;
-//url=url+"?date="+str+"&numPeople="+numPeople;
-//
-//xmlHttp.onreadystatechange=dateChanged;
-//xmlHttp.open("GET",url,true);
-//xmlHttp.send(null);
-//}
-//
-//function dateChanged()
-//{
-//if (xmlHttp.readyState==4)
-//{
-//document.getElementById("show_time").innerHTML=xmlHttp.responseText;
-//}
-//}
-
-
-function GetXmlHttpObject()
-{
-var xmlHttp=null;
-try
-{
-// Firefox, Opera 8.0+, Safari
-xmlHttp=new XMLHttpRequest();
-}
-catch (e)
-{
-// Internet Explorer
-try
-{
-xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-}
-catch (e)
-{
-xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-}
-return xmlHttp;
-}
-
-</script> -->
 
     </head>
 
     <body onload="hideText();">
-     
+
         <?php
         $event_id = $_GET['event_id'];
         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_info.event_id='" . $event_id . "'";
@@ -128,54 +62,78 @@ return xmlHttp;
 
         while ($row = mysql_fetch_array($result)) {
             $eventImage = $address . $row['image_path'];
+            $eventDate = (explode("-", $row['event_date']));
+            $eventDesc = $row['event_description'];
+            $eventName = $row['event_name'];
+            $eventTime = $row['event_time'];
+            $eventCriteria = $row['event_volunteer_criteria'];
+            $eventContact = $row['event_contact_person'];
+            $eventEmail = $row['event_contact_email'];
+            $eventPhone = $row['event_contact_phone'];
+            $eventNGO = $row['ngo_id'];
+            $eventLocation = $row['event_location'];
+            $eventCategory = $row['event_category'];
+            $originalDate = $row['event_date'];
+            $month = date("F", strtotime($originalDate));
+            $time = date("g:i a", strtotime($eventTime));
         }
-
-
-        echo "<form action=\"$address/module/booking/book_ticket_process.php\" method=\"post\">";
+        $query = "select ngo_name from ngo_info where ngo_id=" . $eventNGO;
+        $result = mysql_query($query);
+        if ($result) {
+            while ($row = mysql_fetch_array($result)) {
+                $ngo_name = $row['ngo_name'];
+            }
+        }
         ?>
         <div>
             <div id="menu" class="leftdiv">
                 <?php echo "<img src=\"$eventImage\" />" ?> 
-            </div>
+                <input type="text" value="<?php echo $event_id ?>" id="event_id" hidden="true" />
 
-           
+            </div>
+            <div class="rightdiv" >Contact Details : 
+                <div style="float:right" align="left"><?php echo $eventContact; ?><br/>Phone No: <?php echo $eventPhone ?><br/>Email ID : <?php echo $eventEmail ?>
+                </div>
+                <br/>
+            </div> 
+
             <div align="center" class="centerdiv" >
-                <h1 style="display: inline;">Event Name</h1>
+                <h1 style="display: inline;"><?php echo $eventName; ?></h1>
                 <div  style="float:right; font-size: 20px; padding-top: 8px; height: 100px; margin-top: 20px; width:90px;; border-radius: 5px; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);">
-                    September
+                        <?php echo $month ?>
                     <div style="margin-top: 6px; padding: 6px; padding-bottom: 8px; font-weight: bold; font-size: 25px; height: 30px; background-color: red; color: white;">
-                        30
+                        <?php echo $eventDate[2] ?>
                     </div>
-                    08:00:00
+                    <?php echo $time; ?>
 
                 </div><br/>
                 <br/>
                 <div align="left" style="margin-left: 0px; width: 380px; ">
-                    NGO Name: Alochana <br/>
-                    Event Category : FALA DHEKNA <br/>
-                    Volunteer Criteria : timepas 
+                    NGO Name: <?php echo $ngo_name; ?> <br/>
+                    Event Category : <?php echo $eventCategory ?> <br/>
+                    Volunteer Criteria : <?php echo $eventCriteria; ?> <br/>
+                    Event Venue : <?php echo $eventLocation ?>
                 </div>
 
-                <div><p>
-                        morgan stanley aaya, bina hame liye chala gyaa, dil ko bada dard hua, aisa laga jaise barish me mu sukha ho. dil is kadar jhanjhor chuka tha k ab jine ki koi aashsa
-                        nai thi. mann to kiya is beraham duniya se naata tod lu lekin fir khayal aaya k 12 lakh nahi to kya 6 ki to aasha hai. isi thought k sath hum fir duniya jine chal diye
+                <div><p><?php echo $eventDesc; ?>    
                     </p>
                 </div>
                 <br/>
 
                 <div>
-                    <input type="email" class="input" id="attendText" placeholder="Enter Your Email ID" />
-                    <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I am Attending"/>
+                    <div id="attendDialog">
+                        <input type="email" class="input" style="text-transform: none;" id="attendText" name="emailID" placeholder="Enter Your Email ID" />
+                        <input type="checkbox" id="attendReminder" name="reminder" />I want a Reminder?<br/><br/>
+
+                    </div>
+                    <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I am Attending"/><br/>
+
                 </div>
             </div>
 
-            <div class="rightdiv" >Contact Details : 
-                <div style="float:right" align="left">Krupal Solanki <br/>Phone no : +91 9833216207 <br/>Email ID : krupalsolanki@live.com
-                </div>
-                <br/>
-            </div> 
-       
-        </form>
-    </div>
-</body>
+
+
+
+        </div>
+    </body>
 </html>
