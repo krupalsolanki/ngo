@@ -3,7 +3,7 @@
     <body>
 
         <form action="eventDesc.php" method="post" enctype="multipart/form-data">
-            <div class="centerdiv" style="height: auto;">
+            <div id="eventList" class="centerdiv" style="height: auto;">
 
                 <?php
                 require_once '../../config.php';
@@ -11,6 +11,11 @@
                 if (isset($_GET['filterCity']) && !empty($_GET['filterCity'])) {
                     $filterCity = $_GET['filterCity'];
                     $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "'";
+                    if (isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) {
+                        $selectedNgo = join(',', $_GET['selectedNgo']);
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo)";
+
+                    }
                 } else {
 
                     $query = "select * from event_info, images where event_info.event_id = images.event_id ";

@@ -1,3 +1,6 @@
+<head>
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+</head>
 <div style="background: -moz-linear-gradient(270deg, #d1f7f7, rgb(254, 254, 254)) repeat scroll 0% 0% transparent; height:600px;">
 <?php
 require_once BASE_PATH .'/config.php';
