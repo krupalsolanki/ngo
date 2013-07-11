@@ -8,17 +8,51 @@ include BASE_PATH . '/includes/header.php';
 
 <script src="filterEvents.js" ></script>
 <script>
-
+var values = new Array();
+var category = new Array();
     $(document).ready(function() {
-        $(".filterNgoChbx").click(function() {
+        $(".filterEventChbx").click(function() {
+            var category = $('input:checkbox:checked.filterEventChbx').map(function() {
+                return this.value;
+            }).get();
             var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
                 return this.value;
             }).get();
+            alert(values);
             var v = $("#filterCity").val();
+            alert(category);
             $.ajax({
                 type: "GET",
                 url: 'eventList.php',
                 data: {
+                    selectedCategory: category,
+                    selectedNgo: values,
+                    filterCity: v
+                }, // appears as $_GET['id'] @ ur backend side
+                success: function(data) {
+                    // data is ur summary
+                    $('#filterList').html(data);
+                }
+
+            });
+        });
+        
+  
+        $(".filterNgoChbx").click(function() {
+            var category = $('input:checkbox:checked.filterEventChbx').map(function() {
+                return this.value;
+            }).get();
+            var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
+                return this.value;
+            }).get();
+            alert(values);
+            var v = $("#filterCity").val();
+            alert(category);
+            $.ajax({
+                type: "GET",
+                url: 'eventList.php',
+                data: {
+                    selectedCategory: category,
                     selectedNgo: values,
                     filterCity: v
                 }, // appears as $_GET['id'] @ ur backend side

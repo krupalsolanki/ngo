@@ -22,7 +22,6 @@
                 }
                 $result = mysql_query($query);
                 $num_rows = mysql_num_rows($result);
-                $count = 0;
                 while ($row = mysql_fetch_array($result)) {
                     //$resultrow=$row;
 
@@ -33,7 +32,6 @@
                         <img src=\"$eventImage\" style=\"height:95px; float:left;\"/><div><h3>" . $row['event_name'] . "</h3></a>
                             Event Date :" . $row['event_date'] . "</br>Event Location :" . $row['event_location'] . "</div></div><div><hr></div>";
 
-                    //echo $row['mo_name'];
                 }
                 ?>
 
