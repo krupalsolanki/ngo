@@ -7,67 +7,13 @@ include BASE_PATH . '/includes/header.php';
 
 
 <script src="filterEvents.js" ></script>
-<script>
-var values = new Array();
-var category = new Array();
-    $(document).ready(function() {
-        $(".filterEventChbx").click(function() {
-            var category = $('input:checkbox:checked.filterEventChbx').map(function() {
-                return this.value;
-            }).get();
-            var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
-                return this.value;
-            }).get();
-            var v = $("#filterCity").val();
-            $.ajax({
-                type: "GET",
-                url: 'eventList.php',
-                data: {
-                    selectedCategory: category,
-                    selectedNgo: values,
-                    filterCity: v
-                }, // appears as $_GET['id'] @ ur backend side
-                success: function(data) {
-                    // data is ur summary
-                    $('#filterList').html(data);
-                }
 
-            });
-        });
-        
-  
-        $(".filterNgoChbx").click(function() {
-            var category = $('input:checkbox:checked.filterEventChbx').map(function() {
-                return this.value;
-            }).get();
-            var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
-                return this.value;
-            }).get();
-            var v = $("#filterCity").val();
-            $.ajax({
-                type: "GET",
-                url: 'eventList.php',
-                data: {
-                    selectedCategory: category,
-                    selectedNgo: values,
-                    filterCity: v
-                }, // appears as $_GET['id'] @ ur backend side
-                success: function(data) {
-                    // data is ur summary
-                    $('#filterList').html(data);
-                }
-
-            });
-        });
-        
-        
-    });</script>
 <div>
     <div id="menu" class="leftdiv">
         <!--<form>-->
         <div><strong> Search By : </strong></div>
         <div><strong>Location</strong></div>
-        <div><select name="filter_city" id="filterCity" class="input" onchange="selectCity(this.value);"><?php
+        <div><select name="filter_city" id="filterCity" class="input" onchange="selectCity();"><?php
                 $query = "SELECT distinct event_city FROM event_info";
                 $result = mysql_query($query) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {

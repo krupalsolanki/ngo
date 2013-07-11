@@ -20,7 +20,7 @@
                         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.event_category IN ($selectedCategory)";
                     }
                     if ((isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) && (isset($_GET['selectedCategory']) && !empty($_GET['selectedCategory']))) {
-                        $selectedNgo = join(',', $_GET['selectedNgo']);
+                        $selectedNgo = join('","', $_GET['selectedNgo']);
                         $selectedCategory = join(',', $_GET['selectedCategory']);
                         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) and event_info.event_category IN ($selectedCategory)";
                     }
@@ -32,7 +32,6 @@
                 if ($result) {
 
                     $num_rows = mysql_num_rows($result);
-                    echo $num_rows;
                     if ($num_rows != 0) {
                         while ($row = mysql_fetch_array($result)) {
                             //$resultrow=$row;
