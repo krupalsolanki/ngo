@@ -18,9 +18,7 @@ var category = new Array();
             var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
                 return this.value;
             }).get();
-            alert(values);
             var v = $("#filterCity").val();
-            alert(category);
             $.ajax({
                 type: "GET",
                 url: 'eventList.php',
@@ -45,9 +43,7 @@ var category = new Array();
             var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
                 return this.value;
             }).get();
-            alert(values);
             var v = $("#filterCity").val();
-            alert(category);
             $.ajax({
                 type: "GET",
                 url: 'eventList.php',
@@ -71,7 +67,7 @@ var category = new Array();
         <!--<form>-->
         <div><strong> Search By : </strong></div>
         <div><strong>Location</strong></div>
-        <div><select name="filter_city" id="filterCity" class="input" onchange="selectCity(this.value)"><?php
+        <div><select name="filter_city" id="filterCity" class="input" onchange="selectCity(this.value);"><?php
                 $query = "SELECT distinct event_city FROM event_info";
                 $result = mysql_query($query) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
