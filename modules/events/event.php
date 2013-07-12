@@ -47,7 +47,7 @@ include BASE_PATH . '/includes/header.php';
             ?></div>
 
         
-        <input type="button" class="button" value="Search Near By"/>
+        <input type="button" class="button" onclick="initialize();" value="Search Near By"/>
         <div id="previousEvents"><button class="button">Previous Events</button></div>
         <div id="regEmail" style="margin-bottom: 15px; margin-top: 15px; display: none">
             <input type="email" id="prevEmailTxt" style="text-transform: none" required="required" class="input" placeholder="Enter your Email ID" /><br/>
@@ -61,3 +61,4 @@ include BASE_PATH . '/includes/header.php';
         <?php include 'eventList.php'; ?>
     </div>
 </div>
+<div id="map" style="width: 100%; height: 80%"></div>
