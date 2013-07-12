@@ -3,8 +3,10 @@
     <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"
-    type="text/javascript"></script>
+<!--    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"
+    type="text/javascript"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
     
         <script type="text/javascript"
                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBH3u6k4SDqwejVMskneZZJl_s-xSzbvMg&sensor=true">
