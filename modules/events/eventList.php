@@ -17,12 +17,12 @@
                     }
                     if (isset($_GET['selectedCategory']) && !empty($_GET['selectedCategory'])) {
                         $selectedCategory = join(',', $_GET['selectedCategory']);
-                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.event_category IN ($selectedCategory)";
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.event_category IN ('$selectedCategory')";
                     }
                     if ((isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) && (isset($_GET['selectedCategory']) && !empty($_GET['selectedCategory']))) {
                         $selectedNgo = join('","', $_GET['selectedNgo']);
                         $selectedCategory = join(',', $_GET['selectedCategory']);
-                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) and event_info.event_category IN ($selectedCategory)";
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) and event_info.event_category IN ('$selectedCategory')";
                     }
                 } else {
 
