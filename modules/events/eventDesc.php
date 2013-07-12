@@ -89,8 +89,8 @@
         }
         ?>
         <div>
-            <div id="menu" class="leftdiv">
-                <?php echo "<img src=\"$eventImage\" />" ?> 
+            <div id="menu" class="leftdiv" >
+                <?php echo "<img src=\"$eventImage\" style=\"height: 200px; width: 200\"/>" ?> 
                 <input type="text" value="<?php echo $event_id ?>" id="event_id" hidden="true" />
 
             </div>
@@ -122,7 +122,24 @@
                     </p>
                 </div>
                 <br/>
-
+                <div>
+                <?php 
+                if(isset($_SESSION['emailID'])){
+                    
+                $todays_date = date("Y-m-d");
+                $today = strtotime($todays_date); 
+                $originalDate = strtotime($originalDate);
+                    if($originalDate < $today){
+                    echo "<button class=\"button\">Post Success Stories</button> ";
+                        
+                    }  else {
+                        echo '<button class="button">Do not Want to Attend</button>';    
+                    }
+                }
+                else{
+                ?>
+                    
+                </div>
                 <div>
                     <div id="attendDialog">
                         <input type="email" class="input" style="text-transform: none;" id="attendText" name="emailID" placeholder="Enter Your Email ID" />
@@ -130,13 +147,9 @@
 
                     </div>
                     <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I want to Attend"/><br/>
-
+                <?php } ?>
                 </div>
             </div>
-
-
-
-
         </div>
     </body>
 </html>

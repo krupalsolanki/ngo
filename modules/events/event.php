@@ -46,8 +46,13 @@ include BASE_PATH . '/includes/header.php';
             }
             ?></div>
 
-        <input type="submit" class="button" value="Filter Search"/><br/>
+        
         <input type="button" class="button" value="Search Near By"/>
+        <div id="previousEvents"><button class="button">Previous Events</button></div>
+        <div id="regEmail" style="margin-bottom: 15px; margin-top: 15px; display: none">
+            <input type="email" id="prevEmailTxt" style="text-transform: none" class="input" placeholder="Enter your Email ID" /><br/>
+            <button id="prevEventsBtn" class="button" style="margin-left: 25px;">Show</button> 
+        </div>
         
         <!--</form>-->
 

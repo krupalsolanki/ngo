@@ -8,25 +8,33 @@
                 <?php
                 require_once '../../config.php';
                 require_once BASE_PATH . '/includes/connection.php';
-                if (isset($_GET['filterCity']) && !empty($_GET['filterCity'])) {
+                if (isset($_GET['regEmailID']) && !empty($_GET['regEmailID'])) {
+                    $query = "select * from event_info, images, event_attendee where event_info.event_id = images.event_id and event_attendee.event_id = event_info.event_id and event_attendee.event_attendee_email = '".$_GET['regEmailID']."' ORDER BY event_date DESC";
+                    session_start();
+                    $_SESSION['emailID'] = $_GET['regEmailID'];
+                    
+                    echo $_SESSION['emailID'];
+                    
+                }
+                elseif (isset($_GET['filterCity']) && !empty($_GET['filterCity'])) {
                     $filterCity = $_GET['filterCity'];
-                    $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "'";
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "'ORDER BY event_date DESC";
                     if (isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) {
                         $selectedNgo = join(',', $_GET['selectedNgo']);
-                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo)";
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) ORDER BY event_date DESC";
                     }
                     if (isset($_GET['selectedCategory']) && !empty($_GET['selectedCategory'])) {
                         $selectedCategory = join(',', $_GET['selectedCategory']);
-                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.event_category IN ('$selectedCategory')";
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.event_category IN ('$selectedCategory') ORDER BY event_date DESC";
                     }
                     if ((isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) && (isset($_GET['selectedCategory']) && !empty($_GET['selectedCategory']))) {
                         $selectedNgo = join('","', $_GET['selectedNgo']);
                         $selectedCategory = join(',', $_GET['selectedCategory']);
-                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) and event_info.event_category IN ('$selectedCategory')";
+                        $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) and event_info.event_category IN ('$selectedCategory') ORDER BY event_date DESC";
                     }
                 } else {
 
-                    $query = "select * from event_info, images where event_info.event_id = images.event_id ";
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id ORDER BY event_date DESC";
                 }
                 $result = mysql_query($query);
                 if ($result) {

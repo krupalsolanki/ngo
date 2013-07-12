@@ -29,7 +29,7 @@ $(document).ready(function() {
         var category = $('input:checkbox:checked.filterEventChbx').map(function() {
             return this.value;
         }).get();
-        
+
         var values = $('input:checkbox:checked.filterNgoChbx').map(function() {
             return this.value;
         }).get();
@@ -74,6 +74,24 @@ $(document).ready(function() {
 
         });
     });
+    $("#previousEvents").click(function() {
+        $("#regEmail").slideDown("slow");
+    });
 
+    $("#prevEventsBtn").click(function() {
+        var regEmail = $("#prevEmailTxt").val();
+        $.ajax({
+            type: "GET",
+            url: 'eventList.php',
+            data: {
+                regEmailID: regEmail
+            }, // appears as $_GET['id'] @ ur backend side
+            success: function(data) {
+                // data is ur summary
+                
+                $('#filterList').html(data);
+            }
 
+        });
+    });
 });
