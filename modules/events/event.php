@@ -50,7 +50,7 @@ include BASE_PATH . '/includes/header.php';
         <input type="button" class="button" value="Search Near By"/>
         <div id="previousEvents"><button class="button">Previous Events</button></div>
         <div id="regEmail" style="margin-bottom: 15px; margin-top: 15px; display: none">
-            <input type="email" id="prevEmailTxt" style="text-transform: none" class="input" placeholder="Enter your Email ID" /><br/>
+            <input type="email" id="prevEmailTxt" style="text-transform: none" required="required" class="input" placeholder="Enter your Email ID" /><br/>
             <button id="prevEventsBtn" class="button" style="margin-left: 25px;">Show</button> 
         </div>
         
