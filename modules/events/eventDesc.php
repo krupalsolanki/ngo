@@ -37,7 +37,7 @@
                     url = url + "?emailID=" + emailID + "&event_id=" + event_id + "&reminder=" + reminder;
                     urlAddress = location.href;
                     var n = urlAddress.indexOf("eventDesc");
-                    urlAddress = spliceString(urlAddress, n, 40, url);
+                    urlAddress = spliceString(urlAddress, n, 80, url);
                     if(emailID == ''){
                         alert("Add Email ID ");
                     }
@@ -56,6 +56,7 @@
         <?php
         echo "<form action=\"processEvent.php\" method=\"get\" >";
         $event_id = $_GET['event_id'];
+        
         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_info.event_id='" . $event_id . "'";
 
         $result = mysql_query($query);
@@ -65,6 +66,7 @@
         }
 
         while ($row = mysql_fetch_array($result)) {
+            
             $eventImage = $address . $row['image_path'];
             $eventDate = (explode("-", $row['event_date']));
             $eventDesc = $row['event_description'];
@@ -151,6 +153,7 @@
                         <input type="checkbox" id="attendReminder" name="reminder" />I want a Reminder?<br/><br/>
 
                     </div>
+                    
                     <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I want to Attend"/><br/>
                 <?php } ?>
                 </div>
