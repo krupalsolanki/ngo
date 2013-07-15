@@ -4,7 +4,7 @@ var infowindow = new google.maps.InfoWindow();
 
 var values = new Array();
 var category = new Array();
-var map;
+
 var pos;
 $(document).ready(function() {
     function selectCity()
@@ -147,12 +147,14 @@ function clearLocations() {
 function searchLocationsNear() {
 //                clearLocations();
 
-    var radius = document.getElementById('radiusSelect').value;
-    radius = radius * 1.609344;
-    alert(radius);
-    var searchUrl = 'http://localhost/ngo_phase1/modules/events/getXML.php?lat=' + pos.lat() + '&lng=' + pos.lng() + '&radius=' + radius;
-//                var searchUrl = 'http://localhost/ngo_phase1/modules/maps/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
+//    var radius = document.getElementById('radiusSelect').value;
+//    radius = radius * 1.609344;
+//    alert(radius);
+    alert(pos.lat());
+    var searchUrl = 'http://localhost/ngo_phase1/modules/events/getXML.php?lat=' + pos.lat() + '&lng=' + pos.lng() + '&radius=' + 10;
+//                var searchUrl = 'http://localhost/ngo_phase1/modules/events/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
     downloadUrl(searchUrl, function(data) {
+        alert(data);
         var xml = parseXml(data);
         var markerNodes = xml.documentElement.getElementsByTagName("event_info");
         var bounds = new google.maps.LatLngBounds();
@@ -162,8 +164,8 @@ function searchLocationsNear() {
             var latlng = new google.maps.LatLng(
                     parseFloat(markerNodes[i].getAttribute("lat")),
                     parseFloat(markerNodes[i].getAttribute("lng")));
-            createOption(name, distance, i);
-            createMarker(latlng, name);
+//            createOption(name, distance, i);
+            createMarker(latlng, name, distance);
             bounds.extend(latlng);
         }
         map.fitBounds(bounds);
@@ -175,11 +177,12 @@ function searchLocationsNear() {
     });
 }
 
-function createMarker(latlng, name) {
-    var html = "<b>" + name + "</b> ";
+function createMarker(latlng, name, distance) {
+    alert(name);
+    var html = "<b>" + name + "</b> " + "<br/>"+distance;
     var marker = new google.maps.Marker({
         map: map,
-        position: latlng,
+        position: latlng
     });
     google.maps.event.addListener(marker, 'click', function() {
         infoWindow.setContent(html);
@@ -189,6 +192,7 @@ function createMarker(latlng, name) {
 }
 
 function createOption(name, distance, num) {
+    alert(name);
     var option = document.createElement("option");
     option.value = num;
     option.innerHTML = name + "(" + distance.toFixed(1) + ")";
@@ -281,10 +285,11 @@ function codeLatLng() {
   
   var lat = pos.lat();
   var lng = pos.lng();
-   
+
   var latlng = new google.maps.LatLng(lat, lng);
+
   geocoder.geocode({'latLng': latlng}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
+    if (status == google.maps.GeocoderStatus.OK) {
             alert(status);
       if (results[1]) {
         map.setZoom(11);

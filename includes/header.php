@@ -6,7 +6,6 @@
 <!--    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"
     type="text/javascript"></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
     
         <script type="text/javascript"
                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBH3u6k4SDqwejVMskneZZJl_s-xSzbvMg&sensor=true">

@@ -1,6 +1,6 @@
 <?php
 
-$host = "192.168.1.200";
+$host = "192.168.1.198";
 define('BASE_PATH', dirname(realpath(__FILE__)));
 
 $user = "krupal";
