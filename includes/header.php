@@ -6,7 +6,6 @@
 <!--    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"
     type="text/javascript"></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
     
         <script type="text/javascript"
                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBH3u6k4SDqwejVMskneZZJl_s-xSzbvMg&sensor=true">
@@ -26,7 +25,7 @@ session_start();
 echo "<a class=\"ex2\" href=\"$address/index.php\" >Home</a>";
 echo "<a class=\"ex2\" href=\"$address/modules/events/eventAdd.php\">Events</a>";
 echo "<a class=\"ex2\" href=\"$address/modules/ngo/ngoAdd.php\">Ngo</a>";
-echo "<a class=\"ex2\" onClick=\"alert('I\'ve been clicked!')\" href=\"$address/modules/events/event.php\">Search Events</a>";
+echo "<a class=\"ex2\" href=\"$address/modules/events/event.php\">Search Events</a>";
 echo "<a class=\"ex2\" >Success Stories</a>";
 
 echo "<a class=\"ex2\" href=#>About Us</a>";
