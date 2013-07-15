@@ -4,8 +4,8 @@ require_once BASE_PATH.'/includes/connection.php';
 // Get parameters from URL
 $center_lat = $_GET["lat"];
 $center_lng = $_GET["lng"];
-$radius = 10;
-//$radius = $_GET["radius"];
+//$radius = 10;
+$radius = $_GET["radius"];
 
 // Start XML file, create parent node
 $dom = new DOMDocument("1.0");

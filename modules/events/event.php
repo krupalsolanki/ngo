@@ -47,8 +47,7 @@ include BASE_PATH . '/includes/header.php';
             ?></div>
 
         
-        <input type="button" class="button" onclick="initialize();" value="Search Near By"/><br/>
-        <input type="button" class="button" onclick="searchLocationsNear();" value="dhundo be"/>
+        <input type="button" id="searchNearBy" class="button"  value="Search Near By"/><br/>
         
         <div id="previousEvents"><button class="button">Previous Events</button></div>
         <div id="regEmail" style="margin-bottom: 15px; margin-top: 15px; display: none">
@@ -59,8 +58,19 @@ include BASE_PATH . '/includes/header.php';
         <!--</form>-->
 
     </div>
+    <div class="rightdiv" id="mapDisplay" style="display: none;">
+        <div id="map" style="width: 100%; height: 80%"></div><br/>
+        <div style="margin:15px; margin-left: 60px; " >
+            <select id="radiusSelect">
+                <option value="1.24" selected>2km</option>
+                <option value="6.21">10km</option>
+                <option value="12.42">20km</option>
+            </select>
+        <input type="button" class="button" onclick="searchLocationsNear();" value="Search"/>
+            
+        </div>
+    </div>
     <div id="filterList" >
         <?php include 'eventList.php'; ?>
     </div>
 </div>
-<div id="map" style="width: 100%; height: 80%"></div>

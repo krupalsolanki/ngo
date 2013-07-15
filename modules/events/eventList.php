@@ -18,7 +18,7 @@
                 }
                 elseif (isset($_GET['filterCity']) && !empty($_GET['filterCity'])) {
                     $filterCity = $_GET['filterCity'];
-                    $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "'ORDER BY event_date DESC";
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id and event_info.event_city='" . $filterCity . "' ORDER BY event_date DESC";
                     if (isset($_GET['selectedNgo']) && !empty($_GET['selectedNgo'])) {
                         $selectedNgo = join(',', $_GET['selectedNgo']);
                         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_city='" . $filterCity . "' and event_info.ngo_id IN ($selectedNgo) ORDER BY event_date DESC";
