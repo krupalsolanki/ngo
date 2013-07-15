@@ -54,6 +54,7 @@
     <body onload="hideText();">
 
         <?php
+        echo "<form action=\"processEvent.php\" method=\"get\" >";
         $event_id = $_GET['event_id'];
         $query = "select * from event_info, images where event_info.event_id = images.event_id and event_info.event_id='" . $event_id . "'";
 
@@ -91,7 +92,7 @@
         <div>
             <div id="menu" class="leftdiv" >
                 <?php echo "<img src=\"$eventImage\" style=\"height: 200px; width: 200\"/>" ?> 
-                <input type="text" value="<?php echo $event_id ?>" id="event_id" hidden="true" />
+                <input type="text" name="event_id" value="<?php echo $event_id ?>" id="event_id" hidden="true" />
 
             </div>
             <div class="rightdiv" >Contact Details : 
@@ -123,6 +124,7 @@
                 </div>
                 <br/>
                 <div>
+                    
                 <?php 
                 if(isset($_SESSION['emailID'])){
                     
@@ -130,9 +132,12 @@
                 $today = strtotime($todays_date); 
                 $originalDate = strtotime($originalDate);
                     if($originalDate < $today){
+                       echo "<input type=\"text\" value=\"post_success\" name='type' hidden=\"true\" />";
                     echo "<button class=\"button\">Post Success Stories</button> ";
                         
                     }  else {
+                        
+                       echo "<input type=\"text\" value=\"opt_out\" name='type' hidden=\"true\" />";
                         echo '<button class="button">Do not Want to Attend</button>';    
                     }
                 }
@@ -149,6 +154,7 @@
                     <input type="button" class="button" id="attendBtn" onclick="attendEvent(this.value);" value="I want to Attend"/><br/>
                 <?php } ?>
                 </div>
+            </form>
             </div>
         </div>
     </body>

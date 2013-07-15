@@ -125,7 +125,7 @@ function searchLocationsNear() {
     var radius = document.getElementById('radiusSelect').value;
     radius = radius * 1.609344;
 
-    var searchUrl = 'http://localhost/ngo_phase1/modules/events/getXML.php?lat=' + pos.lat() + '&lng=' + pos.lng() + '&radius=' + radius;
+    var searchUrl = 'http://192.168.1.198/ngo_phase1/modules/events/getXML.php?lat=' + pos.lat() + '&lng=' + pos.lng() + '&radius=' + radius;
 //                var searchUrl = 'http://localhost/ngo_phase1/modules/events/getXML.php?lat=18.5516174&lng=73.8257325&radius=10';
     downloadUrl(searchUrl, function(data) {
 

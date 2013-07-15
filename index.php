@@ -10,6 +10,7 @@
        <?php
 	require_once 'config.php';
 	include BASE_PATH .'/includes/header.php';
+        session_destroy();
        ?>
         <div align="center" class="centerdiv" style="height:100px;">
             <h1>Welcome</h1>
