@@ -34,7 +34,7 @@
                     }
                 } else {
 
-                    $query = "select * from event_info, images where event_info.event_id = images.event_id ORDER BY event_date DESC";
+                    $query = "select * from event_info, images where event_info.event_id = images.event_id ORDER BY event_info.event_date DESC";
                 }
                 $result = mysql_query($query);
                 if ($result) {
