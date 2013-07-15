@@ -6,7 +6,8 @@
         $query = "INSERT INTO `event_attendee`(`event_attendee_id`, `event_id`, `event_attendee_email`, `reminder`) VALUES 
             (null,'".$_GET['event_id']."','".$_GET['emailID']."','".$_GET['reminder']."')";
          $result = mysql_query($query);
-        
+       include '../mail/mailOnOpting.php';
+      sendMailForAttending($_GET['emailID'],$_GET['event_id']);
                     
         if($result)
         Header("Location: $address/index.php");
