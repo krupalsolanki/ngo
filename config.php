@@ -1,9 +1,9 @@
 <?php
 
-$host = "192.168.1.200";
+$host = "192.168.1.220";
 define('BASE_PATH', dirname(realpath(__FILE__)));
 
-$user = "krupal";
+$user = "satyam";
 $public_replace_string = "/home/$user/public_html/";
 $localhost_replace_string_windows = "C:/wamp/www/";
 $localhost_replace_string_linux = "/var/www/";
